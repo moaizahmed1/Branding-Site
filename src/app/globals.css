@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Design tokens — mirrored from the Figma "Ben" file variables */
+@theme {
+  --color-ink: #0b0b0b; /* color/neutral/100 */
+  --color-ink-2: #121212; /* color/neutral/150 */
+  --color-ink-3: #1a1a1a; /* color/neutral/250 */
+  --color-surface: #171717; /* bg/surface */
+  --color-line: #2b2b2b; /* border/default */
+  --color-accent: #b99852; /* bg/accent */
+  --color-accent-decor: rgb(185 152 82 / 0.6); /* text/decorative */
+  --color-accent-soft: rgb(185 152 82 / 0.2); /* color/alpha/brass-20 */
+  --color-on-accent: #070707; /* text/on-accent */
+  --color-muted: #a8a8a8; /* text/secondary */
+  --color-faint: #9a9893; /* text/tertiary */
+  --color-cream: #f2efe7; /* color/cream/100 */
+  --color-cream-2: #f1ece3; /* color/cream/300 */
+
+  --font-sans: "42dot Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --font-inter: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-3xl: 24px;
+  --radius-2xl: 16px;
+  --radius-xl: 12px;
+
+  --tracking-display: -0.03em; /* -1.44px @ 48px */
+  --tracking-eyebrow: 0.1em; /* 1.1px @ 11px */
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* Type scale (Figma text styles) */
+@utility text-display {
+  font-size: clamp(2.125rem, 1.4rem + 2.6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-display);
+  font-weight: 500;
+}
+
+@utility text-eyebrow {
+  font-size: 16px;
+  line-height: 25.6px;
+  letter-spacing: -0.01em;
+  color: var(--color-muted);
+}
+
+@utility text-step {
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.087em;
+  color: var(--color-accent-decor);
+}
+
+@utility scrollbar-thin-dark {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
