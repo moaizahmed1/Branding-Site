@@ -1,16 +1,16 @@
 /** Photo slots. Drop the exported files into /public/images with these names. */
 export const images = {
   hero: "/images/hero.jpg",
-  about: "/images/about-player.jpg",
-  processAssess: "/images/process-assess.jpg",
-  processProgress: "/images/process-progress.jpg",
+  about: "/images/about-player.png",
+  processAssess: "/images/process-assess.png",
+  processProgress: "/images/process-progress.png",
   representation: "/images/representation.jpg",
-  eventCamp: "/images/event-camp.jpg",
-  eventShowcase: "/images/event-showcase.jpg",
-  eventSessions: "/images/event-sessions.jpg",
-  postScouts: "/images/post-scouts.jpg",
-  postAnalysis: "/images/post-analysis.jpg",
-  postPathway: "/images/post-pathway.jpg",
+  eventCamp: "/images/event-camp.png",
+  eventShowcase: "/images/event-showcase.png",
+  eventSessions: "/images/event-sessions.png",
+  postScouts: "/images/post-scouts.png",
+  postAnalysis: "/images/post-analysis.png",
+  postPathway: "/images/post-pathway.png",
 } as const;
 
 export const CTA_LABEL = "Get Your Blueprint";
@@ -117,21 +117,21 @@ export const events = [
     title: "Blueprint Development Camp",
     body: "A three-day intensive with individual assessment built in.",
     image: images.eventCamp,
-    position: "50% 40%",
+    position: "center",
   },
   {
     date: "4 Oct",
     title: "Showcase Day — Invite Only",
     body: "Selected players perform in front of scouting staff.",
     image: images.eventShowcase,
-    position: "50% 50%",
+    position: "center",
   },
   {
     date: "Ongoing",
     title: "Specialist Technical Sessions",
     body: "Small-group, position-specific coaching.",
     image: images.eventSessions,
-    position: "50% 50%",
+    position: "center",
   },
 ];
 

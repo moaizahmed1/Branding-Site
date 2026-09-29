@@ -17,7 +17,7 @@ export function About() {
         <Media
           src={images.about}
           alt="A Blueprint XI player seen from behind, looking out over a floodlit stadium"
-          position="50% 30%"
+          position="center"
           className="aspect-[6/7] w-full rounded-3xl bg-line md:aspect-auto md:h-[709px]"
         />
 

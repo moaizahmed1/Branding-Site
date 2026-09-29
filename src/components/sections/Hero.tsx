@@ -8,7 +8,7 @@ export function Hero() {
       <Media
         src={images.hero}
         alt=""
-        position="50% 8%"
+        position="50% 20%"
         className="absolute inset-0 -z-20"
         style={{
           backgroundImage: `url(${images.hero}), radial-gradient(60% 50% at 55% 20%, #2a2a2a 0%, #0b0b0b 100%)`,

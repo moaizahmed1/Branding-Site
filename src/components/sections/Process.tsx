@@ -65,7 +65,7 @@ export function Process() {
             <Media
               src={images.processProgress}
               alt="A player pausing thoughtfully during a training session"
-              position="60% 30%"
+              position="center"
               className="flex-1 basis-0 rounded-2xl"
             />
           </Card>
