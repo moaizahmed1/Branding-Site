@@ -201,39 +201,3 @@ export const levels = [
   "Semi-professional",
   "Professional",
 ];
-
-export const footerColumns = [
-  {
-    title: "Your Blueprint",
-    links: [
-      { label: "How It Works", href: "#process" },
-      { label: "Packages", href: "#packages" },
-      { label: "Example Blueprint", href: "#analysis" },
-      { label: "Get Your Blueprint", href: "#contact" },
-    ],
-  },
-  {
-    title: "Representation",
-    links: [
-      { label: "Our Approach", href: "#representation" },
-      { label: "Our Players", href: "#representation" },
-      { label: "Enquiry", href: "#contact" },
-    ],
-  },
-  {
-    title: "Camps & Events",
-    links: [
-      { label: "Blueprint Camps", href: "#events" },
-      { label: "Upcoming Events", href: "#events" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Our Story", href: "#about" },
-      { label: "Our Philosophy", href: "#about" },
-      { label: "Our Team", href: "#about" },
-      { label: "Insights", href: "#insights" },
-    ],
-  },
-];

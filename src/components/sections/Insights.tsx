@@ -20,7 +20,7 @@ export function Insights() {
                   <Media
                     src={p.image}
                     alt=""
-                    className="h-[186px] opacity-80 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-100"
+                    className="h-[186px] transition duration-500 group-hover:scale-[1.03] group-hover:brightness-125"
                   />
                   <div
                     aria-hidden

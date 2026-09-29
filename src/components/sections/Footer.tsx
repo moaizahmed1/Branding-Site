@@ -1,4 +1,6 @@
-import { footerColumns } from "@/lib/content";
+import Link from "next/link";
+import { Wordmark } from "@/components/layout/Wordmark";
+import { footerColumns } from "@/lib/routes";
 
 export function Footer() {
   return (
@@ -6,14 +8,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1344px] rounded-3xl border border-line bg-surface px-6 py-10 md:px-12">
         <div className="grid gap-12 lg:grid-cols-[447fr_745fr] lg:gap-14">
           <div className="flex flex-col">
-            <p className="text-[24px] font-medium leading-8">
-              <span className="uppercase tracking-[0.14em] text-cream-2">
-                Blueprint
-              </span>{" "}
-              <span className="bg-gradient-to-br from-[#decfb6] via-[#c5ab84] to-[#a68d71] bg-clip-text tracking-[-0.035em] text-transparent">
-                XI
-              </span>
-            </p>
+            <Wordmark className="text-[24px] leading-8" />
             <p className="max-w-[320px] pt-5 text-sm leading-[22.75px] text-faint">
               Your game. Your blueprint. Personalised football development and
               player representation for ambitious players.
@@ -36,12 +31,12 @@ export function Footer() {
                 <ul className="flex flex-col gap-3 pt-5">
                   {col.links.map((l) => (
                     <li key={l.label}>
-                      <a
+                      <Link
                         href={l.href}
                         className="text-sm leading-5 text-faint transition-colors hover:text-cream"
                       >
                         {l.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

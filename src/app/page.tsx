@@ -3,7 +3,6 @@ import { Analysis } from "@/components/sections/Analysis";
 import { Contact } from "@/components/sections/Contact";
 import { Events } from "@/components/sections/Events";
 import { Faq } from "@/components/sections/Faq";
-import { Footer } from "@/components/sections/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Insights } from "@/components/sections/Insights";
 import { Packages } from "@/components/sections/Packages";
@@ -14,7 +13,7 @@ import { Why } from "@/components/sections/Why";
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Hero />
       <Quote />
       <About />
@@ -27,7 +26,6 @@ export default function Home() {
       <Insights />
       <Faq />
       <Contact />
-      <Footer />
-    </main>
+    </>
   );
 }

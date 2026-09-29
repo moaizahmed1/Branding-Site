@@ -67,6 +67,15 @@ body {
   color: var(--color-muted);
 }
 
+@utility text-mono-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 16.5px;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
 @utility text-step {
   font-size: 30px;
   line-height: 1;

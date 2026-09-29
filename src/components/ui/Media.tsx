@@ -4,6 +4,8 @@ import { cn } from "@/lib/cn";
 type Props = {
   /** Path under /public, e.g. "/images/hero.jpg" */
   src: string;
+  /** Optional stand-in shown while `src` doesn't exist yet */
+  fallback?: string;
   alt: string;
   className?: string;
   /** CSS background-position, e.g. "50% 20%" */
@@ -12,17 +14,32 @@ type Props = {
 };
 
 /**
- * Photo slot. The image is a CSS background layered over a dark placeholder,
- * so a missing file degrades to the placeholder instead of a broken image.
+ * Photo slot. Images are CSS backgrounds layered over a dark placeholder,
+ * so a missing file degrades to the fallback / placeholder instead of a
+ * broken image.
  */
-export function Media({ src, alt, className, position = "center", style }: Props) {
+export function Media({
+  src,
+  fallback,
+  alt,
+  className,
+  position = "center",
+  style,
+}: Props) {
+  const layers = [
+    `url(${src})`,
+    fallback ? `url(${fallback})` : null,
+    "linear-gradient(135deg, #262626 0%, #141414 100%)",
+  ].filter(Boolean);
+
   return (
     <div
-      role="img"
-      aria-label={alt}
+      role={alt ? "img" : undefined}
+      aria-label={alt || undefined}
+      aria-hidden={alt ? undefined : true}
       className={cn("bg-cover bg-no-repeat", className)}
       style={{
-        backgroundImage: `url(${src}), linear-gradient(135deg, #262626 0%, #141414 100%)`,
+        backgroundImage: layers.join(", "),
         backgroundPosition: position,
         ...style,
       }}
