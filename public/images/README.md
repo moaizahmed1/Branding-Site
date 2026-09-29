@@ -18,7 +18,6 @@ Exported from the Figma file (`Ben`), sized to their slots. Paths are set in
 | team-member.png | Our Team portraits (all four use one placeholder in the Figma) |
 | insights-grid.png | Insights — all six article cards (one shared placeholder in the Figma) |
 | featured-article.png | Insights — featured article (optional; falls back to team-member.png) |
-| representation.jpg | Home — Representation media slot (empty in the Figma; optional) |
 
 Missing files fall back to a dark placeholder (or a stand-in image where noted in code).
 Ryan Mitchell and Sam Thompson currently reuse crops of the Ethan / Alex exports — replace

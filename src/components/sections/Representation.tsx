@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { StepCard } from "@/components/ui/Card";
 import { Container, Section } from "@/components/ui/Container";
-import { Media } from "@/components/ui/Media";
-import { CTA_LABEL, images } from "@/lib/content";
+import { CTA_LABEL } from "@/lib/content";
 
 /** The 4-card masonry (01/03 left, 02/04 right) shared with /our-approach. */
 export function RepresentationCards() {
@@ -65,11 +64,6 @@ export function Representation() {
           <Button href="#contact" font="mono">
             {CTA_LABEL}
           </Button>
-          <Media
-            src={images.representation}
-            alt="A coaching session in progress"
-            className="hidden h-[460px] w-full rounded-3xl bg-line md:block"
-          />
         </div>
 
         <RepresentationCards />

@@ -4,7 +4,6 @@ export const images = {
   about: "/images/about-player.png",
   processAssess: "/images/process-assess.png",
   processProgress: "/images/process-progress.png",
-  representation: "/images/representation.jpg",
   eventCamp: "/images/event-camp.png",
   eventShowcase: "/images/event-showcase.png",
   eventSessions: "/images/event-sessions.png",
