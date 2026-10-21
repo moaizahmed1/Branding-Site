@@ -1,83 +1,78 @@
+import { Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
 import { packages } from "@/lib/content";
+import { routes } from "@/lib/routes";
 
 export function Packages() {
   return (
-    <Section id="packages">
-      <Container className="flex flex-col items-center gap-10">
-        <div className="flex max-w-[560px] flex-col items-center gap-3 text-center">
-          <div className="flex flex-col items-center">
-            <p className="text-eyebrow">BluePrint Packages</p>
-            <h2 className="text-display">Choose Your Blueprint</h2>
-          </div>
-          <p className="text-base leading-[25.6px] tracking-[-0.01em]">
-            Find the right level of support for your football journey.
-          </p>
+    <Section tone="ink-2" id="packages">
+      <Container className="flex flex-col items-center gap-12">
+        <div className="flex max-w-[560px] flex-col items-center gap-2 text-center">
+          <p className="text-eyebrow">{packages.eyebrow}</p>
+          <h2 className="text-display">{packages.title}</h2>
         </div>
 
-        <div className="grid w-full items-start gap-6 md:grid-cols-3">
-          {packages.map((p) => (
+        <div className="grid w-full gap-6 md:grid-cols-3">
+          {packages.plans.map((p, i) => (
             <article
               key={p.name}
               className={cn(
-                "relative flex flex-col justify-between gap-8 rounded-3xl",
+                "flex min-h-[460px] flex-col justify-between gap-8 rounded-3xl",
                 p.featured
-                  ? "min-h-[484px] bg-accent p-5 text-black"
-                  : "min-h-[448px] border border-line bg-surface p-6",
+                  ? "bg-accent p-6 text-on-accent shadow-[4px_10px_5px_rgb(0_0_0/0.03)]"
+                  : "border border-line bg-surface px-4 py-5 md:px-6",
               )}
             >
-              <div className="flex flex-col gap-[14px]">
-                <h3 className="text-[20px] font-medium leading-6 tracking-[-0.02em]">
-                  {p.name}
-                </h3>
-                <p className="flex items-end leading-10">
-                  <span className="text-[40px] font-semibold tracking-[-0.01em]">
-                    {p.price}
-                  </span>
-                  <span className="text-sm leading-5">/month</span>
-                </p>
-                <p
+              <div className="flex flex-col gap-6">
+                <span
                   className={cn(
-                    "max-w-[318px] leading-5",
-                    p.featured ? "text-sm" : "text-[13px] leading-[21px]",
+                    "text-step",
+                    p.featured && "!text-on-accent/60",
                   )}
                 >
-                  {p.blurb}
-                </p>
-                {p.featured && (
-                  <span className="absolute right-5 top-5 rounded-md bg-ink-2 px-3 py-2 text-sm leading-5 text-white">
-                    Most Popular
-                  </span>
-                )}
-              </div>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-[28px] font-medium leading-9 tracking-[-0.03em]">
+                    {p.name}
+                  </h3>
+                  <p
+                    className={cn(
+                      "pt-1 text-base leading-[25.6px]",
+                      p.featured ? "text-on-accent/70" : "text-muted",
+                    )}
+                  >
+                    {p.tagline}
+                  </p>
+                </div>
 
-              <div className="flex flex-col gap-2 opacity-80">
-                <h4 className="text-base leading-[25.6px] tracking-[-0.01em]">
-                  What&apos;s included
-                </h4>
-                <ul
-                  className={cn(
-                    "pl-7",
-                    p.featured
-                      ? "text-base leading-[25.6px]"
-                      : "text-[15px] leading-[26px]",
-                  )}
-                >
+                <ul className="flex flex-col gap-3">
                   {p.features.map((f) => (
-                    <li key={f}>{f}</li>
+                    <li key={f} className="flex items-start gap-2.5 text-[15px] leading-6">
+                      <Check
+                        size={16}
+                        aria-hidden
+                        className={cn(
+                          "mt-1 shrink-0",
+                          p.featured ? "text-on-accent" : "text-accent",
+                        )}
+                      />
+                      {f}
+                    </li>
                   ))}
                 </ul>
               </div>
 
               <Button
-                href="#contact"
+                href={routes.getStarted}
                 full
                 variant={p.featured ? "dark" : "accent"}
-                className={p.featured ? "py-3" : undefined}
+                className={cn("py-[15px]", p.featured && "!bg-[#070707]")}
+                aria-label={`${packages.cta}: ${p.name}`}
               >
-                {p.cta}
+                {packages.cta}
               </Button>
             </article>
           ))}

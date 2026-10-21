@@ -1,64 +1,41 @@
-/** Every page in the site, grouped as in the Figma footer / navigation. */
+/** Single-page site: every section has an anchor; one extra page for the sample report. */
 export const routes = {
   home: "/",
-  howItWorks: "/how-it-works",
-  packages: "/packages",
-  exampleBlueprint: "/example-blueprint",
-  getBlueprint: "/get-your-blueprint",
-  approach: "/our-approach",
-  players: "/our-players",
-  enquiry: "/enquiry",
-  camps: "/camps",
-  events: "/events",
-  story: "/our-story",
-  philosophy: "/our-philosophy",
-  team: "/our-team",
-  insights: "/insights",
-  contact: "/#contact",
+  blueprint: "/#what-is-a-blueprint",
+  founder: "/#founder",
+  howItWorks: "/#how-it-works",
+  packages: "/#packages",
+  services: "/#services",
+  getStarted: "/#get-started",
+  sampleBlueprint: "/sample-blueprint",
 } as const;
+
+/** Top navigation (also used by the menu panel). */
+export const navLinks = [
+  { label: "The Blueprint", href: routes.blueprint },
+  { label: "Founder", href: routes.founder },
+  { label: "How It Works", href: routes.howItWorks },
+  { label: "Packages", href: routes.packages },
+  { label: "Services", href: routes.services },
+  { label: "Contact", href: routes.getStarted },
+];
 
 export const footerColumns = [
   {
     title: "Your Blueprint",
     links: [
+      { label: "What is a Blueprint?", href: routes.blueprint },
+      { label: "Sample Blueprint", href: routes.sampleBlueprint },
       { label: "How It Works", href: routes.howItWorks },
       { label: "Packages", href: routes.packages },
-      { label: "Example Blueprint", href: routes.exampleBlueprint },
-      { label: "Get Your Blueprint", href: routes.getBlueprint },
     ],
   },
   {
-    title: "Representation",
+    title: "Support",
     links: [
-      { label: "Our Approach", href: routes.approach },
-      { label: "Our Players", href: routes.players },
-      { label: "Enquiry", href: routes.enquiry },
+      { label: "Beyond the Blueprint", href: routes.services },
+      { label: "Meet the Founder", href: routes.founder },
+      { label: "Get Started", href: routes.getStarted },
     ],
   },
-  {
-    title: "Camps & Events",
-    links: [
-      { label: "Blueprint Camps", href: routes.camps },
-      { label: "Upcoming Events", href: routes.events },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "Our Story", href: routes.story },
-      { label: "Our Philosophy", href: routes.philosophy },
-      { label: "Our Team", href: routes.team },
-      { label: "Insights", href: routes.insights },
-    ],
-  },
-];
-
-/** Top navigation (Figma header). */
-export const navLinks = [
-  { label: "Our Blueprint", href: routes.howItWorks },
-  { label: "Representation", href: routes.approach },
-  { label: "Camps & Events", href: routes.camps },
-  { label: "About", href: routes.story },
-  { label: "Insights", href: routes.insights },
-  { label: "Contact", href: routes.contact },
 ];
