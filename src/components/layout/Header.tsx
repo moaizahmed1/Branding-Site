@@ -54,7 +54,7 @@ export function Header() {
               ))}
             </nav>
             <Link
-              href={routes.getBlueprint}
+              href={routes.packages}
               className="whitespace-nowrap rounded-md bg-accent px-3 py-2.5 font-mono sm:px-4 text-[12px] uppercase tracking-[0.08em] text-[#0d0d0f] transition hover:brightness-110 md:px-5 md:text-[14px]"
             >
               <span className="sm:hidden">Get Blueprint</span>
@@ -70,7 +70,7 @@ export function Header() {
             "mt-2 rounded-3xl border border-white/10 bg-ink-2/95 p-6 backdrop-blur-xl",
           )}
         >
-          <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-2 md:max-w-[520px]">
             {footerColumns.map((col) => (
               <div key={col.title}>
                 <p className="text-xs text-faint">{col.title}</p>

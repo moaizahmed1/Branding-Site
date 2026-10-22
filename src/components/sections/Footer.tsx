@@ -21,7 +21,7 @@ export function Footer() {
 
           <nav
             aria-label="Footer"
-            className="grid grid-cols-2 gap-x-10 gap-y-10 sm:grid-cols-4"
+            className="grid grid-cols-2 gap-x-10 gap-y-10 lg:max-w-[420px] lg:justify-self-end"
           >
             {footerColumns.map((col) => (
               <div key={col.title}>

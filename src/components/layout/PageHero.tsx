@@ -51,11 +51,11 @@ export function PageHero({
         </div>
 
         <div className="flex w-full flex-col gap-3 md:w-auto md:shrink-0">
-          <Button href={routes.getBlueprint} font="mono">
+          <Button href={routes.packages} font="mono">
             Get Your Blueprint
           </Button>
-          <Button href={routes.story} font="mono" variant="ghost">
-            Discover Blueprint XI
+          <Button href={routes.home} font="mono" variant="ghost">
+            Back to Home
           </Button>
         </div>
       </div>

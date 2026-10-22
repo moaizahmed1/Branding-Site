@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { Media } from "@/components/ui/Media";
-import { CTA_LABEL, images } from "@/lib/content";
+import { hero, images } from "@/lib/content";
+import { routes } from "@/lib/routes";
 
 export function Hero() {
   return (
@@ -21,28 +22,31 @@ export function Hero() {
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-5 pb-16 pt-40 md:flex-row md:items-end md:justify-between md:px-10 md:pb-[90px]">
         <div className="flex max-w-[842px] flex-col items-start gap-6">
-          <span className="inline-flex h-10 items-center rounded-full bg-ink-2/80 px-4 text-sm backdrop-blur-[5px]">
-            BLUEPRINT XI
-          </span>
-          <h1 className="text-[clamp(2.5rem,1.6rem+3.6vw,3.5rem)] font-medium leading-[1.14] tracking-[-0.034em]">
-            Every footballer has a
-            <br className="hidden sm:block" /> unique journey.
+          <div className="flex flex-col items-start gap-3">
+            <span className="inline-flex h-10 items-center rounded-full bg-ink-2/80 px-4 text-sm backdrop-blur-[5px]">
+              {hero.pill}
+            </span>
+            <p className="font-mono text-[12px] uppercase leading-[18px] tracking-[0.16em] text-accent">
+              {hero.tagline}
+            </p>
+          </div>
+          <h1 className="max-w-[760px] text-[clamp(2.5rem,1.6rem+3.6vw,3.5rem)] font-medium leading-[1.14] tracking-[-0.034em]">
+            {hero.title}
           </h1>
-          <p className="max-w-[640px] font-inter text-base leading-6 tracking-[0.01em]">
-            We use professional scouting to assess your game, identify your
-            strengths, and create your personalised Blueprint for development.
-            <br className="hidden md:block" /> For selected players, we also
-            provide professional representation and career management to help
-            you progress.
-          </p>
+          <div className="flex max-w-[680px] flex-col gap-4 font-inter text-base leading-6 tracking-[0.01em]">
+            {hero.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+          <p className="text-sm text-muted">{hero.note}</p>
         </div>
 
         <div className="flex w-full flex-col gap-3 md:w-auto md:shrink-0">
-          <Button href="#contact" font="mono">
-            {CTA_LABEL}
+          <Button href={routes.packages} font="mono">
+            Get Your Blueprint
           </Button>
-          <Button href="#about" font="mono" variant="ghost">
-            Discover Blueprint XI
+          <Button href={routes.services} font="mono" variant="ghost">
+            Explore our Services
           </Button>
         </div>
       </div>
