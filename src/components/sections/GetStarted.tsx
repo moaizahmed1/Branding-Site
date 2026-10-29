@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Container, Section } from "@/components/ui/Container";
 import { getStarted } from "@/lib/content";
@@ -19,7 +20,9 @@ export function GetStarted() {
           </p>
         </div>
 
-        <ContactForm />
+        <Suspense fallback={null}>
+          <ContactForm />
+        </Suspense>
       </Container>
     </Section>
   );

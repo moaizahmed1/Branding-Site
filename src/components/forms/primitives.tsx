@@ -47,6 +47,8 @@ export function Select({
   options,
   variant = "underline",
   required = true,
+  value,
+  onChange,
 }: {
   id: string;
   name: string;
@@ -54,13 +56,18 @@ export function Select({
   options: string[];
   variant?: "underline" | "boxed";
   required?: boolean;
+  /** Pass both to control the select; omit for an uncontrolled one. */
+  value?: string;
+  onChange?: (value: string) => void;
 }) {
   return (
     <div className="relative">
       <select
         id={id}
         name={name}
-        defaultValue=""
+        {...(value === undefined
+          ? { defaultValue: "" }
+          : { value, onChange: (e) => onChange?.(e.target.value) })}
         required={required}
         className={cn(
           variant === "underline" ? underlineField : boxedField,

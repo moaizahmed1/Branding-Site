@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/Button";
 import { Container, Section } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
 import { packages } from "@/lib/content";
-import { routes } from "@/lib/routes";
 
 export function Packages() {
   return (
@@ -66,7 +65,7 @@ export function Packages() {
               </div>
 
               <Button
-                href={routes.getStarted}
+                href={`/?interest=${encodeURIComponent(p.name)}#get-started`}
                 full
                 variant={p.featured ? "dark" : "accent"}
                 className={cn("py-[15px]", p.featured && "!bg-[#070707]")}
