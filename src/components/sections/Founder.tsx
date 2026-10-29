@@ -9,7 +9,7 @@ export function Founder() {
         <Media
           src={images.founder}
           alt={`${founder.name}, founder of Blueprint XI`}
-          position="50% 20%"
+          position="51% 50%"
           className="aspect-[4/5] w-full rounded-3xl bg-line md:aspect-auto md:h-[560px]"
         />
 
@@ -22,7 +22,7 @@ export function Founder() {
             </p>
           </div>
 
-          <blockquote className="border-l-2 border-accent/60 pl-6 font-inter text-[clamp(1.375rem,1rem+1.4vw,2rem)] font-medium leading-[1.3] tracking-[0.004em]">
+          <blockquote className="border-l-2 border-accent/60 pl-6 font-inter text-[clamp(1.25rem,0.95rem+1vw,1.75rem)] font-medium leading-[1.3] tracking-[0.004em]">
             <span aria-hidden>“</span>
             {founder.quote}
             <span aria-hidden>”</span>

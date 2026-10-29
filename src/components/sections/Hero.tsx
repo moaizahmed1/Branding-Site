@@ -9,15 +9,20 @@ export function Hero() {
       <Media
         src={images.hero}
         alt=""
-        position="50% 20%"
+        position="50% 60%"
         className="absolute inset-0 -z-20"
         style={{
           backgroundImage: `url(${images.hero}), radial-gradient(60% 50% at 55% 20%, #2a2a2a 0%, #0b0b0b 100%)`,
         }}
       />
+      {/* Legibility scrims: darken the text side and the bottom edge so copy stays readable over the bright sunset. */}
       <div
         aria-hidden
-        className="absolute inset-x-0 bottom-0 -z-10 h-[62%] bg-gradient-to-b from-transparent from-[35%] to-[#0e0e0e]"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/50 to-black/10 md:from-black/75 md:via-black/45"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-x-0 bottom-0 -z-10 h-[75%] bg-gradient-to-b from-transparent from-[20%] via-[#0b0b0b]/70 to-[#0e0e0e]"
       />
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-10 px-5 pb-16 pt-40 md:flex-row md:items-end md:justify-between md:px-10 md:pb-[90px]">

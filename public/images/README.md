@@ -4,8 +4,8 @@ Images used by the current site (set in `src/lib/content.ts` and each page):
 
 | File | Used in |
 | --- | --- |
-| hero.jpg | Home hero |
-| founder.jpg | Meet the Founder portrait (**add this** — shows a placeholder until it exists) |
+| hero.webp | Home hero (sunset pitch) |
+| founder.jpg | Meet the Founder photo |
 | hero-page.jpg | Sample Blueprint hero |
 
 The other files in this folder (event-*, post-*, roster-*, team-member, process-*, about-player,
