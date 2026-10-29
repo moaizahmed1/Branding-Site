@@ -1,6 +1,6 @@
 /** Photo slots. Drop the exported files into /public/images with these names. */
 export const images = {
-  hero: "/images/hero.jpg",
+  hero: "/images/hero.webp",
   founder: "/images/founder.jpg",
   sampleHero: "/images/hero-page.jpg",
 } as const;
@@ -21,8 +21,7 @@ export const hero = {
 
 /* ---------- What is a Blueprint? ---------- */
 export const whatIs = {
-  eyebrow: "What is a Blueprint?",
-  title: "Your Roadmap to Development.",
+  title: "What is a Blueprint?",
   paragraphs: [
     "Your Blueprint is a personalised roadmap for your football development. Through professional scouting and analysis, we identify your key strengths, areas for improvement and provide expert recommendations to help you progress.",
     "Beyond your Blueprint, we also offer tailored coaching, video analysis and ongoing support to help you take your game to the next level.",
@@ -44,7 +43,8 @@ export const founder = {
   eyebrow: "Meet the Founder",
   name: "Ben Dickson",
   role: "Premier League Head of Academy Recruitment",
-  quote: "Every player has potential. The difference is understanding what comes next.",
+  quote:
+    "I know what it takes to succeed at the highest level and what academies look for. Blueprint XI gives players a clearer understanding of their game and a roadmap to reach their potential.",
 };
 
 /* ---------- How It Works ---------- */
@@ -103,9 +103,7 @@ export const packages = {
 
 /* ---------- Beyond the Blueprint ---------- */
 export const beyond = {
-  tag: "Player Development",
-  eyebrow: "Beyond the Blueprint",
-  title: "Your Development. Our Support.",
+  title: "Beyond the Blueprint",
   body: "Our support doesn't stop at your Blueprint. Access tailored services to help turn your development plan into progress.",
   services: [
     { icon: "coaching", title: "1-to-1 Coaching", body: "Individual sessions tailored to your development needs." },

@@ -14,13 +14,7 @@ export function Beyond() {
     <Section id="services">
       <Container className="grid items-start gap-12 md:grid-cols-[480fr_600fr] md:gap-20">
         <div className="flex flex-col items-start gap-6">
-          <span className="inline-flex h-10 items-center rounded-full border border-line bg-ink-2 px-4 font-mono text-[11px] uppercase leading-[16.5px] tracking-[0.1em] text-muted">
-            {beyond.tag}
-          </span>
-          <div className="flex flex-col gap-3">
-            <p className="text-eyebrow">{beyond.eyebrow}</p>
-            <h2 className="text-display text-balance">{beyond.title}</h2>
-          </div>
+          <h2 className="text-display text-balance">{beyond.title}</h2>
           <p className="max-w-[440px] text-base leading-[25.6px] tracking-[-0.01em]">
             {beyond.body}
           </p>

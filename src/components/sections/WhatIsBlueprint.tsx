@@ -14,7 +14,6 @@ export function WhatIsBlueprint() {
         {/* Intro + the three pillars */}
         <div className="flex flex-col items-center gap-12">
           <div className="flex max-w-[740px] flex-col items-center gap-4 text-center">
-            <p className="text-eyebrow">{whatIs.eyebrow}</p>
             <h2 className="text-display text-balance">{whatIs.title}</h2>
             <div className="flex max-w-[640px] flex-col gap-4 text-base leading-[25.6px] tracking-[-0.01em] opacity-70">
               {whatIs.paragraphs.map((p) => (
