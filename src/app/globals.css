@@ -88,7 +88,8 @@ body {
   scrollbar-color: var(--color-line) transparent;
 }
 
-:focus-visible {
+/* Form fields signal focus with a gold border/bottom line instead (see forms/primitives.tsx). */
+:focus-visible:not(input, textarea, select) {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 4px;
