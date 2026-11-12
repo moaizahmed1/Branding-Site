@@ -2,15 +2,16 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { neon } from "@neondatabase/serverless";
 
 /**
  * Submission store.
  *
- * Persists to a JSON file (`.data/submissions.json`, override with DATA_DIR).
- * That is fine for local use and for a single long-lived server, but NOT for
- * serverless hosting (Vercel etc.) where the filesystem is ephemeral. To go to
- * production, replace the four functions below (`list`, `add`, `update`,
- * `remove`) with a database — the rest of the app only calls these.
+ * With DATABASE_URL set (Neon / Vercel Postgres) enquiries are stored in
+ * Postgres — required on serverless hosting such as Vercel, where the
+ * filesystem is ephemeral. Without it, they persist to a JSON file
+ * (`.data/submissions.json`, override with DATA_DIR) for local development.
+ * The rest of the app only calls `list`, `get`, `add`, `update` and `remove`.
  */
 
 export const STATUSES = ["new", "in_progress", "resolved", "archived"] as const;
@@ -68,16 +69,16 @@ async function write(items: Submission[]) {
 }
 
 /** Newest first. */
-export async function list(): Promise<Submission[]> {
+async function fileList(): Promise<Submission[]> {
   const items = await read();
   return items.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export async function get(id: string): Promise<Submission | undefined> {
+async function fileGet(id: string): Promise<Submission | undefined> {
   return (await read()).find((s) => s.id === id);
 }
 
-export function add(input: NewSubmission): Promise<Submission> {
+function fileAdd(input: NewSubmission): Promise<Submission> {
   return exclusive(async () => {
     const items = await read();
     const item: Submission = {
@@ -93,7 +94,7 @@ export function add(input: NewSubmission): Promise<Submission> {
   });
 }
 
-export function update(
+function fileUpdate(
   id: string,
   patch: Partial<Pick<Submission, "status" | "notes">>,
 ): Promise<Submission | undefined> {
@@ -108,7 +109,7 @@ export function update(
   });
 }
 
-export function remove(id: string): Promise<boolean> {
+function fileRemove(id: string): Promise<boolean> {
   return exclusive(async () => {
     const items = await read();
     const next = items.filter((s) => s.id !== id);
@@ -117,3 +118,110 @@ export function remove(id: string): Promise<boolean> {
     return true;
   });
 }
+
+/* ---------- Postgres backend ---------- */
+
+type Row = {
+  id: string;
+  created_at: string | Date;
+  name: string;
+  email: string;
+  position: string;
+  level: string;
+  interest: string;
+  message: string;
+  status: Status;
+  notes: string;
+};
+
+const toSubmission = (r: Row): Submission => ({
+  id: r.id,
+  createdAt: new Date(r.created_at).toISOString(),
+  name: r.name,
+  email: r.email,
+  position: r.position,
+  level: r.level,
+  interest: r.interest,
+  message: r.message,
+  status: r.status,
+  notes: r.notes,
+});
+
+let sqlClient: ReturnType<typeof neon> | undefined;
+let ready: Promise<unknown> | undefined;
+
+/** Lazily connects and creates the table on first use. */
+async function db() {
+  sqlClient ??= neon(process.env.DATABASE_URL!);
+  const sql = sqlClient;
+  ready ??= sql`
+    CREATE TABLE IF NOT EXISTS submissions (
+      id          uuid PRIMARY KEY,
+      created_at  timestamptz NOT NULL DEFAULT now(),
+      name        text NOT NULL,
+      email       text NOT NULL,
+      position    text NOT NULL DEFAULT '',
+      level       text NOT NULL DEFAULT '',
+      interest    text NOT NULL DEFAULT '',
+      message     text NOT NULL DEFAULT '',
+      status      text NOT NULL DEFAULT 'new',
+      notes       text NOT NULL DEFAULT ''
+    )`.catch((e) => {
+    ready = undefined;
+    throw e;
+  });
+  await ready;
+  return sql;
+}
+
+async function pgList(): Promise<Submission[]> {
+  const sql = await db();
+  const rows = (await sql`SELECT * FROM submissions ORDER BY created_at DESC`) as Row[];
+  return rows.map(toSubmission);
+}
+
+async function pgGet(id: string): Promise<Submission | undefined> {
+  const sql = await db();
+  const rows = (await sql`SELECT * FROM submissions WHERE id::text = ${id}`) as Row[];
+  return rows[0] && toSubmission(rows[0]);
+}
+
+async function pgAdd(i: NewSubmission): Promise<Submission> {
+  const sql = await db();
+  const rows = (await sql`
+    INSERT INTO submissions (id, name, email, position, level, interest, message)
+    VALUES (${randomUUID()}, ${i.name}, ${i.email}, ${i.position}, ${i.level}, ${i.interest}, ${i.message})
+    RETURNING *`) as Row[];
+  return toSubmission(rows[0]);
+}
+
+async function pgUpdate(
+  id: string,
+  patch: Partial<Pick<Submission, "status" | "notes">>,
+): Promise<Submission | undefined> {
+  const sql = await db();
+  const rows = (await sql`
+    UPDATE submissions
+    SET status = COALESCE(${patch.status ?? null}, status),
+        notes  = COALESCE(${patch.notes ?? null}, notes)
+    WHERE id::text = ${id}
+    RETURNING *`) as Row[];
+  return rows[0] && toSubmission(rows[0]);
+}
+
+async function pgRemove(id: string): Promise<boolean> {
+  const sql = await db();
+  const rows = (await sql`DELETE FROM submissions WHERE id::text = ${id} RETURNING id`) as unknown[];
+  return rows.length > 0;
+}
+
+/* ---------- Public API ---------- */
+
+const usePg = Boolean(process.env.DATABASE_URL);
+
+export const list = (): Promise<Submission[]> => (usePg ? pgList() : fileList());
+export const get = (id: string) => (usePg ? pgGet(id) : fileGet(id));
+export const add = (i: NewSubmission) => (usePg ? pgAdd(i) : fileAdd(i));
+export const update = (id: string, patch: Partial<Pick<Submission, "status" | "notes">>) =>
+  usePg ? pgUpdate(id, patch) : fileUpdate(id, patch);
+export const remove = (id: string) => (usePg ? pgRemove(id) : fileRemove(id));
